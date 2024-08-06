@@ -11,16 +11,18 @@ dotenv.config()
 
 app.use(express.json())
 
+//Mongoose Connection
 mongoose.connect(process.env.MONGO_URL)
     .then(() => console.log("DB Connection is Successful")).catch((err) => console.log(err))
 
+//Routes
 app.use('/api/auth', authRoute)
 app.use('/api/user', userRoute)
 app.use('/api/product', productRoute)
 app.use('/api/order', orderRoute)
 app.use('/api/cart', cartRoute)
 
-
+//Server Connection
 app.listen(process.env.PORT || 4001, () => {
     console.log("Server is listening!")
 })
