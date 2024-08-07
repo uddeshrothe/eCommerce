@@ -3,7 +3,7 @@ const Order = require('../models/Order.model')
 
 const router = require('express').Router()
 
-//CREATE
+//CREATE ORDER
 router.post("/", verifyToken, async (req, res) => {
     const newOrder = new Order(req.body)
 
@@ -31,7 +31,7 @@ router.put("/:id", verifyTokenAndAdmin, async (req, res) => {
     };
 });
 
-//DELETE 
+//DELETE ORDER
 router.delete("/:id", verifyTokenAndAdmin, async (req, res) => {
     try {
         await Order.findByIdAndDelete(req.params.id)
@@ -51,7 +51,7 @@ router.get("/find/:userId", verifyTokenAndAuthorization, async (req, res) => {
     }
 })
 
-//GET ALL
+//GET ALL ORDERS
 router.get("/", verifyTokenAndAdmin, async (req, res) => {
     try {
         const orders = await Order.find()
